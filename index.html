@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="jquery/jquery-1.7.1.min.js" ></script>
+<style type="text/css">
+  div,h2 ,h3 ,p ,form ,input ,label,dl ,dd {
+	margin: 0px;
+	padding: 0px;
+  }
+	#head {
+		height: 60px;
+		border-bottom: 1px solid #eee;
+	}
+   #head span {
+		display: inline-block;
+		width: 200px;
+		height: 60px;
+		background: url(vanimg/logo.png) no-repeat  scroll 0px -50px;
+   }
+
+   #leftContent {
+	 float: left;
+	 width: 50%;
+	 margin-left: 50px;
+   }
+   #rightContent {
+	float: right;
+	width: 50%;
+	margin-right: 50px;
+   }
+   #rightContent form {
+   	  margin-top: 30px;
+	 padding-left: 100px;
+	 position: relative;
+   }
+   
+	#rightContent h2 {
+		width: 362px;
+		height: 50px;
+		line-height: 50px;
+
+	}
+	#rightContent h2 p{
+		float: left;
+		font-size: 20px;
+		color: #a2a2a2;
+		font-weight: bolder;
+	 }
+
+	
+	.blank3 {
+		height: 2px;
+		width: 362px;
+		background-color: #a10000;
+	}
+   .wrap {
+   	  width: 430px;
+   	  height: 60px;
+   }
+   
+   .phone {
+   	  float: left;
+   	  width: 250px !important;
+   }
+  
+  
+
+	.asPhoneregBtn {
+	width: 97px;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	background: #f5f5f5;
+	color: #b52024!important;
+	border: solid 1px #cbcbcb;
+	display: block;
+	float: left;
+	margin: 0 0 0 10px;
+	font-weight: bolder;
+	text-decoration: none;
+	margin-top: 15px;
+
+	}
+   
+  
+
+
+	 #rightContent  .submit {
+		margin-right: 0px;
+		width: 360px;
+		height: 50px;
+		line-height: 50px;
+		border: 1px solid #eee;
+		text-align: center;
+		color: #fff;
+		background-color: #a10000;
+	 }
+	   #rightContent  .hideId {
+			position: absolute;
+			left: 390px;
+			 top: 100px;
+
+			width: 200px;
+			height: 100px;
+			background-color: #fff7f7;
+			border: 1px solid  ;
+			font-size: 13px;
+			display: none;
+			
+
+		 }
+
+.newtxt {
+    height: 45px;
+    width: 360px;
+    border: solid 1px #cbcbcb;
+    position: relative;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.newtxt label {
+    height: 45px;
+    line-height: 45px;
+    color: #acacac;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    z-index: 8;
+    font-size: 14px;
+    text-indent: 10px;
+    background: #fff;
+    float: left;
+} 
+
+.newtxt input {
+    height: 45px;
+    line-height: 45px;
+    color: #656565;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    text-indent: 10px;
+    z-index: 9;
+    border: 0 none;
+    font-size: 14px;
+    float: left;
+}
+.newtxt input.hoverinput {
+    filter: alpha(opacity=50);
+    -moz-opacity: .5;
+    opacity: 0.5;
+    background: #fff;
+}
+
+</style>
+
+<script type="text/javascript">
+$(function(){
+
+	   $('#phone').on('focus', function(event) {
+ 	  	  event.preventDefault();
+
+ 	  	 $(this).removeClass('hoverinput');
+
+ 	
+ 	    
+ 	  });
+ 	  
+
+      $('#checkPhone').on('click',  function(event){
+      	event.preventDefault();
+
+
+         checkPhone();
+
+ 	  	 console.log("hello phonevalide");
+    
+       });
+
+      $('#phoneCode').focus(function(event) {
+
+      	  $(this).removeClass('hoverinput');
+           
+       }).blur(function(event) {
+      	  checkPhoneCode();
+      });
+    
+
+      $('#password').focus(function(event) {
+      	
+      	  $(this).removeClass('hoverinput');
+           
+       }).blur(function(event) {
+           checkPassword();
+      });
+
+
+      $('#password1').focus(function(event) {
+      	
+      	  $(this).removeClass('hoverinput');
+           
+       }).blur(function(event) {
+         checkRePassword();
+      });
+
+
+     $('#submit').click(function(event) {
+     	   submitForm();
+     });
+ 
+       
+
+
+
+      function checkPhone(){
+         var element = $("#phone");
+         var phoneNumber = element.val();
+
+ 	  	 var Reg=/^((13|15|18|14)+\d{9})$/;
+ 	      if (!Reg.test(phoneNumber)) {
+ 	  	 	  alert("请输入正确的号码");
+ 	  	 }else {
+ 	  	 	 /* $.post('/path/to/file', {'phone': phoneNumber}, function(data, textStatus, xhr) {
+ 	  	 	         if (!data){
+ 	  	 	         	  alert("该号码已被注册")；
+ 	  	 	         	  element.focus();
+ 	  	 	         }
+ 	  	 	    });  */
+ 	  	 }
+      }      
+
+      function checkPhoneCode(){
+      	     var code=$('#phoneCode').val();
+      	     if (code.length != 6) {
+                    alert( "请输入格式正确的验证码");
+                  
+                }
+            }
+
+       function checkPassword () {
+
+       	         var password =$.trim($('#password').val());
+
+       	         if (password.length<6){
+       	         	  alert("请输入长度不少于6位的密码");
+       	         }
+
+
+       } 
+
+       function checkRePassword(){
+       	          var password=$.trim($('#password').val());
+       	          var password1=$.trim($('#password1').val());
+
+
+       	           if ($("#input_password").val() != $("#input_repassword").val()) {
+                           alert("两次输入的密码不同")
+                  }
+       }      
+
+      function checkEmail(){
+                var email =$('#email').val();
+                var Reg=/^[\w-]+(\.[\w-]+)*@[\w-]+(\.(\w)+)*(\.(\w){2,3})$/;
+                if (!Reg.text(email)){
+                	  alert("请输入正确的Email");
+                }else {
+
+              /*  	$.post('/path/to/file', {'email': email}, function(data, textStatus, xhr) {
+                		  if (!data) {
+                		  	  alert("该邮箱已被注册")；
+                		  	  email.focus();
+                		  }
+
+                	});  */
+                }   
+
+            }
+
+     function submitForm(){
+     	      var phoneNumber=$('#phone').val();
+     	      var password=$('#password1').val();
+     	      var code=$('phoneCode').val();
+
+     	      if ($('#checked').prop('checked')) {
+                         
+		     	      $.post('/path/to/file', {'phoneNumber':phoneNumber,'password':password,'code':code}, function(data, textStatus, xhr) {
+		     	      
+		     	      })
+     	      }else{
+     	      	 //  window.alert("请确认协议")；
+     	      }
+
+
+     }  
+})
+	
+
+</script>
+</head>
+<body>
+   <div id="head"><span></span></div> 
+   <div id="content">
+	 <div id="leftContent">
+		<img src="">
+	 </div>
+	 <div id="rightContent">
+		<form>
+			<h2>
+				<p>注册新用户 </p>
+				<p style="font-size: 14px;float: right;">我已经注册，现在就 <a href="#" style="text-decoration: none;color: #000">登录</a> </p>
+			</h2>
+			<div class="blank3"></div>
+
+			<div class="wrap">  
+				 <div class="phone newtxt">
+					<input id="phone" type="text" name="tele" class="hoverinput" >
+					<label>请输入手机号码</label>
+					
+				</div>
+				 <a id="checkPhone" href="#" class="asPhoneregBtn">获取验证码</a>
+	
+			</div>
+			<div class="input newtxt">
+				<input id="phoneCode" type="text" name="indent"  class="hoverinput">
+				<label>填写手机验证码</label>
+			
+			</div>
+			<div class="input newtxt">
+			  
+			  <input id="password" type="password" name="password"  class="hoverinput" >
+			  <label>设定登录密码</label>
+			</div>
+
+			<div class="input newtxt">
+				<input id="password1" type="password" name="re"  class="hoverinput">
+				<label>再次输入密码</label>
+				
+			</div>
+
+			<div style="margin-top:15px">
+					<input id="checked" type="checkbox" name="">
+					<label>请阅读</label>
+					<a href="#" style="text-decoration:none; color: #b52024;font-weight: bolder">《VANCL凡客诚品服务条款》</a>
+			</div>
+
+			<div id="submit" class="submit" style="margin-top: 15px"> 立即注册 </div> 
+		
+		</form>
+              
+
+	 </div>
+   </div>
+</body>
+
+</html>
+
